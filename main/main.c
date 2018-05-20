@@ -33,6 +33,8 @@
 #include "esp_avrc_api.h"
 #include "driver/i2s.h"
 
+#include "ipod_thread.h"
+
 /* event for handler "bt_av_hdl_stack_up */
 enum {
     BT_APP_EVT_STACK_UP = 0,
@@ -40,7 +42,6 @@ enum {
 
 /* handler for bluetooth stack enabled events */
 static void bt_av_hdl_stack_evt(uint16_t event, void *p_param);
-
 
 void app_main()
 {
@@ -112,6 +113,8 @@ void app_main()
 
     /* Bluetooth device name, connection mode and profile set up */
     bt_app_work_dispatch(bt_av_hdl_stack_evt, BT_APP_EVT_STACK_UP, NULL, 0, NULL);
+
+    start_ipod_thread();   
 }
 
 
