@@ -32,9 +32,9 @@ uint8_t iPod::checksum(const uint8_t* data, uint32_t len)
     return 0x100 - (sum & 0xFF);
 }
 
-iPod::iPod(HardwareSerial& ser): _ser(ser)
+iPod::iPod(HardwareSerial& ser): _ser(ser), _playStatusNotifications(false), _playStatusNotificationTimer(0), _recvItr(0), _recvSize(0)
 {
-
+    _name = "iPepe";
 }
 
 void iPod::handlePacket(const uint8_t* data, uint32_t len)
